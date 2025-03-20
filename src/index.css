@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+    background-color: rgb(85, 85, 85, 0.1);
+}
+
+:root {
+    background-color: #fefefe;
+    color: #09090b;
+}
+
+* {
+    font-family: Poppins;
+}
