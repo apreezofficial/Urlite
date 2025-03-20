@@ -43,7 +43,7 @@ const Page = () => {
                 const data = await response.json();
                 setShortenedLink(data.data.tiny_url);
                 setLink("");
-                setMessage("Link successfully shortened!");
+                setMessage("🔗 Link shortened successfully!");
             } catch (error) {
                 setMessage(
                     "Failed to shorten the link. Please try again. " +
@@ -63,14 +63,13 @@ const Page = () => {
         setIconType("check");
 
         navigator.clipboard.writeText(shortenedLink).then(() => {
-            console.log("Link copied to clipboard!");
+            console.log("🔗Link Copied!");
         });
         setTimeout(() => {
             setIconType("copy");
         }, 2000);
     };
     
-   // cool animations cus im learning franer motion
        const variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -82,17 +81,7 @@ const Page = () => {
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
                 <div className="flex text-center flex-col gap-[1.75rem] w-[315px] md:w-[500px] lg:w-[680px] -mt-[4.8rem] sm:-mt-[2.5rem]">
                     <div className="sm:mb-3">
-                        <motion.a
-                            href="https://github.com/TreasureUzoma/Link-Lite"
-                            target="_blank"
-                            initial="hidden"
-                    animate="visible"
-                    variants={variants}
-                    transition={{ duration: 0.5 }}
-                            className="border border-1 border-[#545454] text-[#525252] rounded-3xl px-5 py-2 z-40 text-[0.65rem] font-inter inline-block bg-[#fefefe] font-semibold"
-                        >
-                            Proudly Open Source ⚡
-                        </motion.a>
+                       
                     </div>
                     <motion.h1
                         initial="hidden"
@@ -101,7 +90,7 @@ const Page = () => {
                         variants={variants}
                         className="font-[900] text-[2.6rem] md:text-[3rem] z-40"
                     >
-                        LinkLite.
+                        Urlite.
                     </motion.h1>
                     <motion.p
                     initial="hidden"
@@ -109,8 +98,9 @@ const Page = () => {
                     variants={variants}
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="text-[1rem] text-[#717076] font-medium z-40 md:mb-3">
-                        Easily transform, long, cumbersome links into concise,
-                        personalized URLs that reflect your brand.
+                  Turn lengthy and complicated links into sleek, customized URLs that are easy to share and enhance your brand’s identity.
+
+                    
                     </motion.p>
                     <motion.div
                     initial="hidden"
