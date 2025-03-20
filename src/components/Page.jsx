@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SvgIcons from "./icons/SvgIcons";
 import { motion } from "framer-motion";
 
-const API_KEY = "miAto5WsfZSmW8e5xVG4cTxhEgsZMTikJ8Mlrn6cIljzMv1fBFz9n9ZIXRiG"; // Replace with your secure method later
+const API_KEY = "miAto5WsfZSmW8e5xVG4cTxhEgsZMTikJ8Mlrn6cIljzMv1fBFz9n9ZIXRiG"; // Use secure storage for production
 
 const Page = () => {
     const [link, setLink] = useState("");
@@ -42,12 +42,15 @@ const Page = () => {
                 }
 
                 const data = await response.json();
-                const tinyUrl = data?.data?.tiny_url;
+                console.log("API Response:", data); // Debugging
+
+                const tinyUrl = data?.data?.tiny_url || data?.tiny_url;
 
                 if (tinyUrl) {
                     setShortenedLink(tinyUrl);
                     setLink("");
                     setMessage("Link successfully shortened!");
+                    setMessageType("success");
                 } else {
                     throw new Error("Invalid API response");
                 }
@@ -87,9 +90,6 @@ const Page = () => {
             <main className="h-[40rem] w-full dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center">
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
                 <div className="flex text-center flex-col gap-[1.75rem] w-[315px] md:w-[500px] lg:w-[680px] -mt-[4.8rem] sm:-mt-[2.5rem]">
-                    <div className="sm:mb-3">
-                        
-                    </div>
                     <motion.h1
                         initial="hidden"
                         animate="visible"
@@ -106,7 +106,7 @@ const Page = () => {
                         transition={{ duration: 0.5, delay: 0.6 }}
                         className="text-[1rem] text-[#717076] font-medium z-40 md:mb-3"
                     >
-                     Turn lengthy and complicated links into sleek, customized URLs that are easy to share and enhance your brand’s identity.
+                        Turn lengthy and complicated links into sleek, customized URLs that are easy to share and enhance your brand’s identity.
                     </motion.p>
                     <motion.div
                         initial="hidden"
@@ -128,7 +128,7 @@ const Page = () => {
                             disabled={loading}
                         >
                             {loading ? (
-                                <div className="w-3 h-3 border-2 border-t-4 border-gray-300 border-t-gray-800 rounded-full animate-spin"></div> // Spinner loader
+                                <div className="w-3 h-3 border-2 border-t-4 border-gray-300 border-t-gray-800 rounded-full animate-spin"></div>
                             ) : (
                                 "Shorten"
                             )}
@@ -139,17 +139,22 @@ const Page = () => {
                     {message && (
                         <p
                             className={`text-[0.8rem] z-40 mt-2 ${
-                                messageType === "success" ? "" : "text-red-500"
+                                messageType === "success" ? "text-green-500" : "text-red-500"
                             }`}
                         >
                             {message}
                         </p>
                     )}
 
-                    {/* Only show this block if a shortened link exists */}
+                    {/* Show shortened link only when available */}
                     {shortenedLink && messageType === "success" && (
                         <div className="flex justify-center space-x-4 mt-4">
-                            <a className="font-semibold text-[0.84rem]" href="{shortenedLink}">
+                            <a
+                                className="font-semibold text-[0.84rem]"
+                                href={shortenedLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 {shortenedLink}
                             </a>
                             <button onClick={handleCopyClick}>
