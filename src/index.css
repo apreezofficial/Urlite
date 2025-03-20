@@ -14,36 +14,3 @@
 * {
     font-family: Poppins;
 }
-/* Smooth transition for the entire page */
-html, body {
-  @apply transition-colors duration-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-  @apply w-12 h-6 flex items-center justify-between bg-gray-300 dark:bg-gray-700 rounded-full p-1 relative cursor-pointer;
-  transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out;
-}
-
-/* Toggle Knob */
-.toggle-knob {
-  @apply w-5 h-5 bg-white dark:bg-gray-900 rounded-full shadow-md transform transition-all duration-300;
-}
-
-/* Toggle Knob Movement */
-.toggle-knob.move {
-  transform: translateX(6px);
-}
-
-/* Light and Dark Mode Icons */
-.theme-icon {
-  @apply w-4 h-4 transition-opacity duration-300 absolute;
-}
-
-.theme-icon.show {
-  opacity: 1;
-}
-
-.theme-icon.hide {
-  opacity: 0;
-}
