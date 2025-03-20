@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SvgIcons from "./icons/SvgIcons";
 import { motion } from "framer-motion";
 
-const MainWithHero = () => {
+const Page = () => {
     const [link, setLink] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -166,4 +166,4 @@ const MainWithHero = () => {
     );
 };
 
-export default MainWithHero;
+export default Page;
