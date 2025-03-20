@@ -22,7 +22,7 @@ const Footer = () => {
                 </motion.a>
                 <span>| Inspired by</span>
                 <motion.a
-                    href="https://linklite.vercel.app"
+                    href="https://link-lite-eta.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
