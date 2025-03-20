@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { FaSun, FaMoon } from "react-icons/fa"; // Import mode icons
 import SvgIcons from "./icons/SvgIcons";
 
 const Nav = () => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
+    return localStorage.getItem("theme") || "dark"; // Default to dark mode
   });
 
   useEffect(() => {
@@ -17,24 +18,32 @@ const Nav = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center py-5 px-8 fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+    <nav className="flex justify-between items-center py-5 px-8 fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-all duration-300">
       <h3 className="text-[1.4rem] font-bold text-gray-900 dark:text-white">
         Urlite
       </h3>
 
       <div className="flex items-center gap-4">
         <a href="https://github.com/TreasureUzoma/Link-Lite" target="_blank" rel="noopener noreferrer">
-          <SvgIcons icon="github" className="w-6 h-6 text-gray-900 dark:text-white" />
+          <SvgIcons icon="github" className="w-6 h-6 text-gray-900 dark:text-white transition-all duration-300" />
         </a>
 
+        {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
-          className="w-10 h-5 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-1 transition duration-300"
+          className="w-12 h-6 flex items-center justify-between bg-gray-300 dark:bg-gray-700 rounded-full p-1 transition-all duration-300 relative"
         >
+          {/* Light Mode Icon */}
+          <FaSun className={`absolute left-1 text-yellow-500 transition-all duration-300 ${theme === "light" ? "opacity-100" : "opacity-0"}`} />
+
+          {/* Dark Mode Icon */}
+          <FaMoon className={`absolute right-1 text-gray-900 dark:text-white transition-all duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"}`} />
+
+          {/* Toggle Knob */}
           <div
-            className={`w-4 h-4 bg-white dark:bg-gray-900 rounded-full shadow-md transform ${
-              theme === "dark" ? "translate-x-5" : ""
-            } transition duration-300`}
+            className={`w-5 h-5 bg-white dark:bg-gray-900 rounded-full shadow-md transform ${
+              theme === "dark" ? "translate-x-6" : "translate-x-0"
+            } transition-all duration-300`}
           />
         </button>
       </div>
