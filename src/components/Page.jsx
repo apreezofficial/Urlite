@@ -88,17 +88,7 @@ const Page = () => {
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
                 <div className="flex text-center flex-col gap-[1.75rem] w-[315px] md:w-[500px] lg:w-[680px] -mt-[4.8rem] sm:-mt-[2.5rem]">
                     <div className="sm:mb-3">
-                        <motion.a
-                            href="https://github.com/TreasureUzoma/Link-Lite"
-                            target="_blank"
-                            initial="hidden"
-                            animate="visible"
-                            variants={variants}
-                            transition={{ duration: 0.5 }}
-                            className="border border-1 border-[#545454] text-[#525252] rounded-3xl px-5 py-2 z-40 text-[0.65rem] font-inter inline-block bg-[#fefefe] font-semibold"
-                        >
-                            View on GitHub
-                        </motion.a>
+                        
                     </div>
                     <motion.h1
                         initial="hidden"
@@ -116,8 +106,7 @@ const Page = () => {
                         transition={{ duration: 0.5, delay: 0.6 }}
                         className="text-[1rem] text-[#717076] font-medium z-40 md:mb-3"
                     >
-                        Easily transform long, cumbersome links into concise,
-                        personalized URLs that reflect your brand.
+                     Turn lengthy and complicated links into sleek, customized URLs that are easy to share and enhance your brand’s identity.
                     </motion.p>
                     <motion.div
                         initial="hidden"
@@ -160,9 +149,9 @@ const Page = () => {
                     {/* Only show this block if a shortened link exists */}
                     {shortenedLink && messageType === "success" && (
                         <div className="flex justify-center space-x-4 mt-4">
-                            <p className="font-semibold text-[0.84rem]">
+                            <a className="font-semibold text-[0.84rem]" href="{shortenedLink}">
                                 {shortenedLink}
-                            </p>
+                            </a>
                             <button onClick={handleCopyClick}>
                                 <SvgIcons color="#474747" type={iconType} />
                             </button>
