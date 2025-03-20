@@ -78,10 +78,6 @@ const Nav = () => {
         <h3 className="text-[1.4rem] font-bold text-gray-900 dark:text-white">Urlite</h3>
 
         <div className="flex items-center gap-4">
-          {/* GitHub Link */}
-          <a href="https://github.com/TreasureUzoma/Link-Lite" target="_blank" rel="noopener noreferrer">
-            <span className="text-xl">🔗</span>
-          </a>
 
           {/* Theme Toggle Button (Uses ☀️ & 🌙) */}
           <button
