@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import SvgIcons from "./icons/SvgIcons"; // Your custom SVG icons
 
 const Nav = () => {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
@@ -16,7 +15,7 @@ const Nav = () => {
 
   return (
     <>
-      {/* Apply full-page styles */}
+      {/* Global Styles (Dark Mode + Light Mode Support) */}
       <style>{`
         html, body {
           transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
@@ -79,18 +78,17 @@ const Nav = () => {
         <h3 className="text-[1.4rem] font-bold text-gray-900 dark:text-white">Urlite</h3>
 
         <div className="flex items-center gap-4">
-          {/* GitHub Icon */}
+          {/* GitHub Link */}
           <a href="https://github.com/TreasureUzoma/Link-Lite" target="_blank" rel="noopener noreferrer">
-            <SvgIcons icon="github" className="w-6 h-6 text-gray-900 dark:text-white transition-all duration-300" />
+            <span className="text-xl">🔗</span>
           </a>
 
-          {/* Theme Toggle Button (Shows Only Active Icon) */}
-          <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 dark:bg-gray-700 p-2 transition-all duration-300">
-            {theme === "light" ? (
-              <SvgIcons icon="moon" className="w-6 h-6 text-gray-900 dark:text-white transition-all duration-300" />
-            ) : (
-              <SvgIcons icon="sun" className="w-6 h-6 text-yellow-500 transition-all duration-300" />
-            )}
+          {/* Theme Toggle Button (Uses ☀️ & 🌙) */}
+          <button
+            onClick={toggleTheme}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 dark:bg-gray-700 p-2 transition-all duration-300 text-xl"
+          >
+            {theme === "light" ? "🌙" : "☀️"}
           </button>
         </div>
       </nav>
