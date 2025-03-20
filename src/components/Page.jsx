@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import SvgIcons from "./icons/SvgIcons";
 import { motion } from "framer-motion";
 
+const API_KEY = "miAto5WsfZSmW8e5xVG4cTxhEgsZMTikJ8Mlrn6cIljzMv1fBFz9n9ZIXRiG"; // Replace with your secure method later
+
 const Page = () => {
     const [link, setLink] = useState("");
     const [loading, setLoading] = useState(false);
@@ -10,12 +12,11 @@ const Page = () => {
     const [shortenedLink, setShortenedLink] = useState("");
     const [iconType, setIconType] = useState("copy");
 
-    const handleLinkChange = e => {
+    const handleLinkChange = (e) => {
         setLink(e.target.value);
     };
 
     const handleShortenClick = async () => {
-        // yh, wtf understands regex? ai :)
         const isValidLink =
             /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/[^\s]*)?(\?[^\s]*)?(#[^\s]*)?$/.test(
                 link
@@ -30,7 +31,7 @@ const Page = () => {
                 const response = await fetch("https://api.tinyurl.com/create", {
                     method: "POST",
                     headers: {
-                        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+                        Authorization: `Bearer ${API_KEY}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ url: link })
@@ -41,13 +42,18 @@ const Page = () => {
                 }
 
                 const data = await response.json();
-                setShortenedLink(data.data.tiny_url);
-                setLink("");
-                setMessage("Link successfully shortened!");
+                const tinyUrl = data?.data?.tiny_url;
+
+                if (tinyUrl) {
+                    setShortenedLink(tinyUrl);
+                    setLink("");
+                    setMessage("Link successfully shortened!");
+                } else {
+                    throw new Error("Invalid API response");
+                }
             } catch (error) {
                 setMessage(
-                    "Failed to shorten the link. Please try again. " +
-                        error.message
+                    "Failed to shorten the link. Please try again. " + error.message
                 );
                 setMessageType("error");
             } finally {
@@ -65,16 +71,17 @@ const Page = () => {
         navigator.clipboard.writeText(shortenedLink).then(() => {
             console.log("Link copied to clipboard!");
         });
+
         setTimeout(() => {
             setIconType("copy");
         }, 2000);
     };
 
-       const variants = {
+    const variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
     };
-    
+
     return (
         <div>
             <main className="h-[40rem] w-full dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center">
@@ -85,40 +92,43 @@ const Page = () => {
                             href="https://github.com/TreasureUzoma/Link-Lite"
                             target="_blank"
                             initial="hidden"
-                    animate="visible"
-                    variants={variants}
-                    transition={{ duration: 0.5 }}
+                            animate="visible"
+                            variants={variants}
+                            transition={{ duration: 0.5 }}
                             className="border border-1 border-[#545454] text-[#525252] rounded-3xl px-5 py-2 z-40 text-[0.65rem] font-inter inline-block bg-[#fefefe] font-semibold"
                         >
+                            View on GitHub
                         </motion.a>
                     </div>
                     <motion.h1
                         initial="hidden"
                         animate="visible"
-                        transition={{ duration: 0.5, delay : 0.3 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
                         variants={variants}
                         className="font-[900] text-[2.6rem] md:text-[3rem] z-40"
                     >
-                    Urlite.
+                        Urlite.
                     </motion.h1>
                     <motion.p
-                    initial="hidden"
-                    animate="visible"
-                    variants={variants}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                    className="text-[1rem] text-[#717076] font-medium z-40 md:mb-3">
-                        Easily transform, long, cumbersome links into concise,
+                        initial="hidden"
+                        animate="visible"
+                        variants={variants}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        className="text-[1rem] text-[#717076] font-medium z-40 md:mb-3"
+                    >
+                        Easily transform long, cumbersome links into concise,
                         personalized URLs that reflect your brand.
                     </motion.p>
                     <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={variants}
-                    transition={{ duration: 0.5, delay: 0.9 }}
-                    className="flex items-center justify-center space-x-2">
+                        initial="hidden"
+                        animate="visible"
+                        variants={variants}
+                        transition={{ duration: 0.5, delay: 0.9 }}
+                        className="flex items-center justify-center space-x-2"
+                    >
                         <input
                             type="url"
-                            className="border border-1 rounded-lg w-full p-3 text-[0.8rem] font-medium focus: outline-2 focus:outline-[#474747] placeholder:text-[#909092] z-40"
+                            className="border border-1 rounded-lg w-full p-3 text-[0.8rem] font-medium focus:outline-2 focus:outline-[#474747] placeholder:text-[#909092] z-40"
                             value={link}
                             onChange={handleLinkChange}
                             placeholder="Enter Website URL"
@@ -136,7 +146,7 @@ const Page = () => {
                         </button>
                     </motion.div>
 
-                    {/* Show the success or error message */}
+                    {/* Show success or error message */}
                     {message && (
                         <p
                             className={`text-[0.8rem] z-40 mt-2 ${
