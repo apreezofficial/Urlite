@@ -30,16 +30,6 @@ const Footer = () => {
                 >
                     LinkLite
                 </motion.a>
-                <span>and</span>
-                <motion.a
-                    href="https://tinyurl.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                    whileHover={{ scale: 1.1, color: "#1D4ED8" }}
-                >
-                    TinyURL
-                </motion.a>
             </p>
         </motion.footer>
     );
