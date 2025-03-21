@@ -27,7 +27,7 @@ const CustomShortDomain = () => {
         formData.append("email", email);
 
         try {
-            const response = await fetch("https://getform.io/f/YOUR_GETFORM_LINK", {
+            const response = await fetch("https://getform.io/f/bdrnqdnb", {
                 method: "POST",
                 body: formData,
             });
@@ -52,7 +52,7 @@ const CustomShortDomain = () => {
     };
 
     return (
-        <div className="text-center my-6 biggypeas">
+        <div className="text-center my-6">
             <p className="text-gray-400">
                 Want a custom short domain?{" "}
                 <span
@@ -65,7 +65,7 @@ const CustomShortDomain = () => {
 
             {showForm && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-[#8A2BE2] text-white rounded-md p-6 w-full max-w-md mx-4">
+                    <div className="bg-[#8A2BE2] text-white rounded-md p-6 w-full max-w-md mx-4 relative" style={{ top: '-50px' }}>
                         <div className="flex justify-between items-center mb-4">
                             <p className="font-bold">
                                 You can only create a custom short URL once.
