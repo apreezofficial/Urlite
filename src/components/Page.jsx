@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SvgIcons from "./icons/SvgIcons";
-import Footer from "./Footer"; // ✅ Importing the Footer component
-import CustomShortDomain from "./CustomShortDomain"; // ✅ Importing the custom short domain component
 import { motion } from "framer-motion";
+import CustomShortDomain from "./CustomShortDomain"; // Importing the custom domain component
 
 const API_KEY = "miAto5WsfZSmW8e5xVG4cTxhEgsZMTikJ8Mlrn6cIljzMv1fBFz9n9ZIXRiG"; // Use secure storage for production
 
@@ -44,6 +43,8 @@ const Page = () => {
                 }
 
                 const data = await response.json();
+                console.log("API Response:", data); // Debugging
+
                 const tinyUrl = data?.data?.tiny_url || data?.tiny_url;
 
                 if (tinyUrl) {
@@ -165,11 +166,8 @@ const Page = () => {
                 </div>
             </main>
 
-            {/* ✅ Include the Custom Short Domain Component */}
+            {/* Include the custom domain component */}
             <CustomShortDomain />
-
-            {/* ✅ Include the Footer Component */}
-            <Footer />
         </div>
     );
 };
