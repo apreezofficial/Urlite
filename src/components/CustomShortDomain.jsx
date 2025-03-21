@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const CustomShortDomain = () => {
     const [showForm, setShowForm] = useState(false);
+    const [website, setWebsite] = useState(""); // Added website state
     const [customDomain, setCustomDomain] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -23,6 +24,7 @@ const CustomShortDomain = () => {
         setMessage("");
 
         const formData = new FormData();
+        formData.append("website", website); // Added website to form data
         formData.append("custom_domain", customDomain);
         formData.append("email", email);
 
@@ -90,7 +92,7 @@ const CustomShortDomain = () => {
                                     className="p-2 text-black rounded-md"
                                     placeholder="Enter your Website"
                                     value={website}
-                                    onChange={(e) => website(e.target.value)}
+                                    onChange={(e) => setWebsite(e.target.value)} // Fixed handler
                                     required
                                 />
                                 <input
