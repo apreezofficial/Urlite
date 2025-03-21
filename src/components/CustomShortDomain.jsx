@@ -52,7 +52,7 @@ const CustomShortDomain = () => {
     };
 
     return (
-        <div className="text-center my-6">
+        <div className="text-center my-6 biggypeas">
             <p className="text-gray-400">
                 Want a custom short domain?{" "}
                 <span
