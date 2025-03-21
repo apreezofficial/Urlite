@@ -33,7 +33,7 @@ const CustomShortDomain = () => {
             });
 
             if (response.ok) {
-                setMessage("Custom domain request submitted successfully!");
+                setMessage("Custom domain request submitted successfully! We will reply you in less than an Hour");
                 setMessageType("success");
                 localStorage.setItem("usedFreeCustomDomain", "true");
 
@@ -85,6 +85,14 @@ const CustomShortDomain = () => {
                             </p>
                         ) : (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                                <input
+                                    type="text"
+                                    className="p-2 text-black rounded-md"
+                                    placeholder="Enter your Website"
+                                    value={website}
+                                    onChange={(e) => website(e.target.value)}
+                                    required
+                                />
                                 <input
                                     type="text"
                                     className="p-2 text-black rounded-md"
