@@ -64,48 +64,58 @@ const CustomShortDomain = () => {
             </p>
 
             {showForm && (
-                <div className="mt-4 p-4 bg-[#8A2BE2] text-white rounded-md">
-                    <p className="font-bold mb-3">
-                        You can only create a custom short URL once.
-                    </p>
-
-                    {hasUsedFreeDomain ? (
-                        <p className="text-red-400">
-                            You have already used your free custom domain.
-                        </p>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                            <input
-                                type="text"
-                                className="p-2 text-black rounded-md"
-                                placeholder="Enter your custom domain"
-                                value={customDomain}
-                                onChange={(e) => setCustomDomain(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="email"
-                                className="p-2 text-black rounded-md"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-[#8A2BE2] text-white rounded-md p-6 w-full max-w-md mx-4">
+                        <div className="flex justify-between items-center mb-4">
+                            <p className="font-bold">
+                                You can only create a custom short URL once.
+                            </p>
                             <button
-                                type="submit"
-                                className="bg-white text-[#8A2BE2] font-bold py-2 px-4 rounded-md"
-                                disabled={loading}
+                                onClick={() => setShowForm(false)}
+                                className="text-white hover:text-gray-300"
                             >
-                                {loading ? "Submitting..." : "Submit"}
+                                &times;
                             </button>
-                        </form>
-                    )}
+                        </div>
 
-                    {message && (
-                        <p className={`mt-2 ${messageType === "success" ? "text-green-300" : "text-red-300"}`}>
-                            {message}
-                        </p>
-                    )}
+                        {hasUsedFreeDomain ? (
+                            <p className="text-red-400">
+                                You have already used your free custom domain.
+                            </p>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                                <input
+                                    type="text"
+                                    className="p-2 text-black rounded-md"
+                                    placeholder="Enter your custom domain"
+                                    value={customDomain}
+                                    onChange={(e) => setCustomDomain(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    type="email"
+                                    className="p-2 text-black rounded-md"
+                                    placeholder="Enter your email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                                <button
+                                    type="submit"
+                                    className="bg-white text-[#8A2BE2] font-bold py-2 px-4 rounded-md"
+                                    disabled={loading}
+                                >
+                                    {loading ? "Submitting..." : "Submit"}
+                                </button>
+                            </form>
+                        )}
+
+                        {message && (
+                            <p className={`mt-2 ${messageType === "success" ? "text-green-300" : "text-red-300"}`}>
+                                {message}
+                            </p>
+                        )}
+                    </div>
                 </div>
             )}
         </div>
