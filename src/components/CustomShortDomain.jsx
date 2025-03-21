@@ -53,7 +53,8 @@ const CustomShortDomain = () => {
 
     return (
         <div className="text-center my-6">
-            <p className="text-gray-400" style={{ top: '-100px' }}>
+            {/* Move this text up by 50px */}
+            <p className="text-gray-400 relative" style={{ top: '-50px' }}>
                 Want a custom short domain?{" "}
                 <span
                     className="text-[#FF6B00] font-bold cursor-pointer hover:underline"
@@ -65,7 +66,7 @@ const CustomShortDomain = () => {
 
             {showForm && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-[#8A2BE2] text-white rounded-md p-6 w-full max-w-md mx-4 relative" >
+                    <div className="bg-[#8A2BE2] text-white rounded-md p-6 w-full max-w-md mx-4">
                         <div className="flex justify-between items-center mb-4">
                             <p className="font-bold">
                                 You can only create a custom short URL once.
