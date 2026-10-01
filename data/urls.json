@@ -1,0 +1,55 @@
+[
+  {
+    "id": "76aae211-7fa8-4fb9-94c1-540a9095f993",
+    "code": "ltvi3z",
+    "originalUrl": "https://vercel.com",
+    "clicks": 1,
+    "createdAt": "2026-10-01T12:25:02.132Z",
+    "title": "vercel.com",
+    "lastClickedAt": "2026-10-01T12:25:17.180Z"
+  },
+  {
+    "id": "880dc0bd-3634-478c-98e0-706636939db5",
+    "code": "2wlucb",
+    "originalUrl": "http://localhost:3000/?not_found=pricing",
+    "clicks": 0,
+    "createdAt": "2026-10-01T12:22:22.156Z",
+    "title": "localhost"
+  },
+  {
+    "id": "2aadc525-7bef-46a9-b602-93fc2d18a8b2",
+    "code": "rmvs76",
+    "originalUrl": "https://shopify.com/products/summer-drop",
+    "clicks": 1,
+    "createdAt": "2026-10-01T12:10:52.677Z",
+    "title": "shopify.com",
+    "lastClickedAt": "2026-10-01T12:11:09.061Z"
+  },
+  {
+    "id": "sample-1",
+    "code": "docs",
+    "originalUrl": "https://nextjs.org/docs",
+    "clicks": 142,
+    "createdAt": "2026-09-28T11:57:05.010Z",
+    "lastClickedAt": "2026-10-01T11:42:05.011Z",
+    "title": "Next.js Documentation"
+  },
+  {
+    "id": "sample-2",
+    "code": "github",
+    "originalUrl": "https://github.com",
+    "clicks": 89,
+    "createdAt": "2026-09-26T11:57:05.011Z",
+    "lastClickedAt": "2026-10-01T11:07:05.011Z",
+    "title": "GitHub Platform"
+  },
+  {
+    "id": "sample-3",
+    "code": "forge",
+    "originalUrl": "https://tailwindcss.com",
+    "clicks": 326,
+    "createdAt": "2026-09-24T11:57:05.011Z",
+    "lastClickedAt": "2026-10-01T11:52:05.011Z",
+    "title": "Tailwind CSS Official"
+  }
+]
