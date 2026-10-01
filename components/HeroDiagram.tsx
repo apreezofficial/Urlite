@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link2, Zap, Check, Copy, ExternalLink, QrCode, Sparkles, Share2 } from "lucide-react";
 import { LinkItem } from "@/lib/db";
 import { QrModal } from "./QrModal";
@@ -23,6 +23,16 @@ export function HeroDiagram({ onCreated, inputRef, userEmail }: HeroDiagramProps
 
   const fallbackRef = useRef<HTMLInputElement>(null);
   const activeInputRef = inputRef || fallbackRef;
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (createdLink && resultRef.current) {
+      // Add a slight delay to allow the DOM element to be fully rendered and animated
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [createdLink]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -313,7 +323,7 @@ export function HeroDiagram({ onCreated, inputRef, userEmail }: HeroDiagramProps
 
       {/* Generated Short Link Result Card */}
       {createdLink && (
-        <div className="mt-8 max-w-xl mx-auto bg-white rounded-2xl p-5 border border-sky-200/80 shadow-xl shadow-sky-500/5 animate-in zoom-in-95 duration-200">
+        <div ref={resultRef} className="mt-8 max-w-xl mx-auto bg-white rounded-2xl p-5 border border-sky-200/80 shadow-xl shadow-sky-500/5 animate-in zoom-in-95 duration-200">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
