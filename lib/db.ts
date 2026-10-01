@@ -116,6 +116,19 @@ export async function createLink(params: {
 
   const links = await getAllLinks();
 
+  // Check if the user has already shortened this URL
+  const existingLink = links.find(
+    (l) => l.originalUrl === rawUrl && l.ownerEmail === params.ownerEmail
+  );
+
+  if (existingLink) {
+    const requestedCode = params.customCode?.trim().toLowerCase();
+    // If no custom code was requested, or the requested code matches the existing one, return it directly.
+    if (!requestedCode || requestedCode === existingLink.code) {
+      return { link: existingLink };
+    }
+  }
+
   let code = "";
   if (params.customCode && params.customCode.trim()) {
     code = params.customCode
