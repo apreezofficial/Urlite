@@ -14,8 +14,11 @@ export interface LinkItem {
   ownerEmail?: string;
 }
 
-const DB_DIR = path.join(process.cwd(), "data");
-const DB_FILE = path.join(DB_DIR, "urls.json");
+// In containerized/cloud environments the project root is read-only.
+// /tmp is always writable; fall back to local data/ in development.
+const IS_PROD_CONTAINER = process.env.NODE_ENV === "production" && process.platform !== "win32";
+const DB_DIR = IS_PROD_CONTAINER ? "/tmp" : path.join(process.cwd(), "data");
+const DB_FILE = IS_PROD_CONTAINER ? "/tmp/urls.json" : path.join(DB_DIR, "urls.json");
 
 // Initial sample links if database is empty
 const INITIAL_LINKS: LinkItem[] = [
